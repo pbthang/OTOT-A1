@@ -1,36 +1,46 @@
-# CS3219 OTOT Task A1
+# OTOT Task A1 Report
 
-CS3219 OTOT Task A1 is split into 3 parts. Read up on reverse proxy [here](https://www.upguard.com/blog/reverse-proxy-vs-load-balancer).
+Name: Pham Ba Thang
+Matric No: A0219715B
 
-First, clone the repository
-```sh
-git clone https://github.com/CS3219-AY2223S1/OTOT-A1.git
-cd cs3219_otot_taska1
-```
+## Task A1.1
 
-## A1.1 - Dockerize node app in `app` folder
+- Change directory into `./app`
+- Build the image:
 
-In the `app/index.html` file, search for "TODO" and fill in the blanks.
+  ```zsh
+    docker build -t otot-a1-app .
+  ```
 
-Follow these guide to Dockerize the sample node app.
-- [https://nodejs.org/en/docs/guides/nodejs-docker-webapp/](https://nodejs.org/en/docs/guides/nodejs-docker-webapp/)
+- Run the container:
 
-Extra: Learning how to render HTML file using express.js
-- [https://expressjs.com/en/starter/hello-world.html](https://expressjs.com/en/starter/hello-world.html)
-- [https://codeforgeek.com/render-html-file-expressjs/](https://codeforgeek.com/render-html-file-expressjs/)
+  ```zsh
+  docker run -p 3000:8080 --name otot-a1-app -d otot-a1-app
+  ```
 
-## A1.2 - Dockerize NGINX reverse proxy in `nginx-sample` folder
+If you succeed, you will see this on `localhost:3000`:
+![localhost:3000](images/task-a11.png)
 
-In the `nginx-sample/index.html` file, search for "TODO" and fill in the blanks.
+## Task A1.2
 
-Follow these guide to dockerise the sample NGINX reverse proxy to serve the static HTML in `nginx-sample/index.html`.
-- [https://docs.nginx.com/nginx/admin-guide/web-server/serving-static-content/](https://docs.nginx.com/nginx/admin-guide/web-server/serving-static-content/)
-- [https://docs.nginx.com/nginx/admin-guide/web-server/reverse-proxy/](https://docs.nginx.com/nginx/admin-guide/web-server/reverse-proxy/)
-- [https://www.nginx.com/blog/deploying-nginx-nginx-plus-docker/](https://www.nginx.com/blog/deploying-nginx-nginx-plus-docker/)
+- Change directory into `./nginx-sample`
+- Build the image:
 
-## A1.3 - Use NGINX to serve the node app using `docker-compose`
+  ```zsh
+    docker build -t otot-a1-static .
+  ```
 
-Create a new NGINX conf file and Dockerfile in `nginx` folder. Run the application stack in `app` and `nginx` using `docker-compose`.
+- Run the container:
 
-Follow this guide to use NGINX to act as a reverse proxy such that when a browser makes a HTTP request, the request first goes to the reverse proxy and then sends the request to the appropriate web server. Your final task, you have to server the node app in `app` folder. Use a separate config file from A1.2.
-- [https://ashwin9798.medium.com/nginx-with-docker-and-node-js-a-beginners-guide-434fe1216b6b](https://ashwin9798.medium.com/nginx-with-docker-and-node-js-a-beginners-guide-434fe1216b6b)
+  ```zsh
+  docker run -p 8001:80 --name otot-a1-static -d otot-a1-static
+  ```
+
+- Open `localhost:8001` to see the static html page:
+  ![localhost:8001](images/task-a12.png)
+
+## Task A1.3
+
+- Change directory into `./nginx`
+- Run `docker-compose up`
+- Open `localhost:3000` to see the content (similar to task A1.1)
