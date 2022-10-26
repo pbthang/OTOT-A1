@@ -1,3 +1,3 @@
 FROM nginx:1.21.3-alpine
 COPY ./index.html /usr/share/nginx/html/index.html
-EXPOSE 80
+COPY ./default.conf /etc/nginx/conf.d/default.conf
