@@ -44,4 +44,4 @@ If you succeed, you will see this on `localhost:3000`:
 
 - Change directory into `./nginx`
 - Run `docker-compose up`
-- Open `localhost:3000` to see the content (similar to task A1.1)
+- Open `localhost` to see the content (similar to task A1.1)
